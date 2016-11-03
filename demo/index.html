@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dom events</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300"
+        rel="stylesheet" type="text/css">
+  <link href="./style.css" rel="stylesheet"  type="text/css">
+</head>
+<body>
+  <div class="test-area">Test area</div>
+  <div class="test-area-overlay"></div>
+  <div class="clickble-area">Actions area</div>
+  <form class="controls" onsubmit="return false;">
+    <label>
+      <input type="number" name="x" value="30" /> X
+    </label>
+    <label>
+      <input type="number" name="y" value="30" /> Y
+    </label>
+    <label>
+      <select>
+        <option value="click">Click</options>
+      </select>
+    </label>
+    <label>
+      <button name="click" value="click">Trigger event</button>
+    </label>
+  </form>
+  <script type="text/javascript" src="./bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.git
+.eslint
+.npmignore
+node_modules
+demo
+karma.conf.js
+specs
+webpack.config.js
