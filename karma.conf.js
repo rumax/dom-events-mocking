@@ -44,7 +44,8 @@ module.exports = (config) => {
       'karma-webpack',
       'karma-jasmine',
       'karma-sourcemap-loader',
-      'karma-chrome-launcher'
+      'karma-chrome-launcher',
+      'karma-phantomjs-launcher',
     ],
     babelPreprocessor: {
       options: {
@@ -56,7 +57,7 @@ module.exports = (config) => {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
     singleRun: false,
   });
 };
