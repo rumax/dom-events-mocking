@@ -55,4 +55,4 @@ Based on [happen](https://www.npmjs.com/package/happen).
 
 ## License
 
-MIT
+BSD-2-Clause

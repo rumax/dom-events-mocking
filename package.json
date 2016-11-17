@@ -1,6 +1,6 @@
 {
   "name": "dom-events-mocking",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "DOM events mocking",
   "main": "src/dom-events.js",
   "scripts": {

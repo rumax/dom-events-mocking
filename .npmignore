@@ -1,5 +1,6 @@
 .git
 .eslint
+.eslintrc
 .npmignore
 .res
 node_modules
