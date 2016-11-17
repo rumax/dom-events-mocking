@@ -1,6 +1,7 @@
 .git
 .eslint
 .npmignore
+.res
 node_modules
 demo
 karma.conf.js

@@ -49,7 +49,7 @@ it('Can handle my events', (done) => {
 });
 ```
 
-![Demo](res/click.gif)
+![Demo](https://raw.githubusercontent.com/rumax/dom-events-mocking/develop/res/click.gif)
 
 Based on [happen](https://www.npmjs.com/package/happen).
 
