@@ -3,11 +3,9 @@ DOM events mocking
 
 =============
 
-Wraps the DOM API to make real event mocking in-browser using method chaining.
+Wraps the DOM API to make real events mocking in the browser using method chaining.
 
-```js
-npm install --save dome-events
-```
+> npm install --save dome-events
 
 
 Implements the following DOM events methods and helpers:
@@ -24,9 +22,9 @@ Implements the following DOM events methods and helpers:
 
 ## Why Do I Need This?
 
-If you want to test you application and want/can use JavaScaript only, but still cover UI events. Or write som eintegration tests:
+If you want to test your application and want/can use JavaScript only, but still cover UI events. Or write some integration tests:
 
-```
+```js
 it('Can handle my events', (done) => {
   const btn = document.getElelemntById('YOUR_BUTTON');
 
@@ -43,6 +41,7 @@ it('Can handle my events', (done) => {
       expect('YOUR_ANOTHER_VALIDATION').toBeFalsy();
     })
     .done(() => {
+      // Final validations
       console.log('All steps executed');
       done();
     });

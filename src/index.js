@@ -3,14 +3,14 @@ import utils from './utils';
 
 const emptyFn = () => {};
 
-
 export default class DomEvents {
 
   constructor(options) {
+    const opts = options || {};
     this._events = events;
     this._queue = [];
     // TODO: Sync mode
-    this._syncMode = (options || {}).syncMode || false;
+    this._syncMode = opts.syncMode || false;
 
     for (const eventName in events) {
       if ({}.hasOwnProperty.call(events, eventName)) {

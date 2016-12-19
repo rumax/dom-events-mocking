@@ -2,9 +2,9 @@
 .eslint
 .eslintrc
 .npmignore
-.res
-node_modules
-demo
 karma.conf.js
-specs
 webpack.config.js
+res/
+node_modules/
+demo/
+specs/
