@@ -1,5 +1,5 @@
-/* global describe,it,expect,beforeAll, afterAll, jasmine b:true */
-import DomEvents from '../src/dom-events';
+/* global describe, it, expect, beforeAll, afterAll, jasmine b:true */
+import DomEvents from '../src/';
 
 describe('DOM events', () => {
   let events;

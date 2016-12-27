@@ -1,8 +1,5 @@
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 module.exports = (config) => {
   config.set({
-    basePath: '',
     frameworks: ['jasmine'],
     files: [
       'specs/**/*.spec.js'
@@ -25,20 +22,9 @@ module.exports = (config) => {
           }
         ]
       },
-      externals: {
-        // 'react/lib/ExecutionEnvironment': true,
-        // 'react/lib/ReactContext': true,
-        // 'react/addons': true
-      },
       resolve: {
         extensions: ['', '.js']
-      },
-      node: {
-        net: 'empty'
       }
-    },
-    webpackServer: {
-      noInfo: true
     },
     plugins: [
       'karma-webpack',
@@ -47,11 +33,6 @@ module.exports = (config) => {
       'karma-chrome-launcher',
       'karma-phantomjs-launcher',
     ],
-    babelPreprocessor: {
-      options: {
-        presets: ['airbnb']
-      }
-    },
     reporters: ['progress'],
     port: 9876,
     colors: true,

@@ -1,15 +1,23 @@
 const path = require('path');
 
-const buildDir = path.resolve(__dirname, 'demo');
+const production = 'production' === process.env.NODE_ENV;
 
-
-module.exports = {
+// Production config is default. Development is below.
+const config = {
   devtool: 'source-map',
-  entry: path.resolve(__dirname, 'demo', 'demo.js'),
-  output: {
-    path: buildDir,
-    filename: 'bundle.js'
+
+  entry: {
+    index: path.resolve(__dirname, 'src', 'index.js'),
   },
+
+  output: {
+    path: path.resolve(__dirname, 'lib'),
+    publicPath: '/',
+    filename: '[name].js',
+    libraryTarget: 'umd',
+    library: 'dom-events-mocking',
+  },
+
   module: {
     loaders: [
       {
@@ -22,11 +30,27 @@ module.exports = {
       }
     ]
   },
-  plugins: [],
+
   resolve: {
     extensions: ['', '.js']
   },
-  node: {
-    net: 'empty'
-  }
 };
+
+if (true !== production) {
+  console.log('* Using development config');
+  config.entry = {
+    bundle: [
+      'webpack-dev-server/client',
+      path.resolve(__dirname, 'demo', 'index.js'),
+    ]
+  };
+
+  config.output.path = path.resolve(__dirname, 'demo');
+
+  config.devServer = {
+    port: 3001,
+    contentBase: path.resolve(__dirname, 'demo'),
+  };
+}
+
+module.exports = config;

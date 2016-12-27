@@ -15,6 +15,7 @@ export default {
         }
       }
     }
+
     return extended;
   }
 };

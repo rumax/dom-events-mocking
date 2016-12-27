@@ -1,51 +1,79 @@
-import svgCloud from '../src/decorator';
+import DomEvents from '../src/';
+// import DomEvents from '../lib/dom_events';
 
-const form = document.querySelector('.controls');
-const clouds = [
-  {
-    selector: '#cloud1',
-    coords: [[10, 120], [180, 120], [230, 180]]
-  },
-  {
-    selector: '#cloud2',
-    coords: [[20, 300], [180, 300],  [200, 330], [190, 360], [140, 420],
-             [70, 380]]
-  },
-  {
-    selector: '#cloud3',
-    coords: [[460, 120], [290, 120], [240, 180]]
-  },
-  {
-    selector: '#cloud4',
-    coords: [[450, 300], [290, 300], [270, 330], [280, 360], [330, 420],
-             [400, 380]]
-  },
-  {
-    selector: '#cloud_l1',
-    coords: [[10, 10], [230, 10]]
-  },
-  {
-    selector: '#cloud_l2',
-    coords: [[450, 10], [240, 10]]
-  }
-];
+const events = new DomEvents();
+const testArea = document.getElementsByClassName('test-area')[0];
+const clickbleArea = document.getElementsByClassName('clickble-area')[0];
+const bindAllEvents = (element, callback) => {
+  window.element = element;
+  let key;
 
-
-const render = () => {
-  let elem;
-  let cloud;
-  const radius = parseFloat(form.radius.value);
-  const closed = form.closed.checked;
-  const inward = form.inward.checked;
-  const swapping = form.swapping.checked;
-
-  for (let ind = 0, cnt = clouds.length; ind < cnt; ++ind) {
-    elem = document.querySelector(clouds[ind].selector);
-    cloud = svgCloud(clouds[ind].coords, radius, closed, inward,
-      swapping);
-    elem.setAttribute('d', cloud);
+  for (key in element) {
+    if (key.indexOf('on') === 0) {
+      element.addEventListener(key.slice(2), callback);
+    }
   }
 };
+const createPoint = (x, y, className) => {
+  const point = document.createElement('div');
+  point.classList.add('point');
+  if (className) {
+    point.classList.add(className);
+  }
+  point.style.left = `${x}px`;
+  point.style.top = `${y}px`;
+  return point;
+};
+const cleanPoints = () => {
+  testArea.innerHTML = 'Test area';
+  clickbleArea.innerHTML = 'Actions area';
+};
 
-form.addEventListener('change', render);
-render();
+bindAllEvents(testArea, (evt) => {
+  const point = createPoint(evt.x, evt.y, 'evented');
+  point.innerHTML = `${evt.type}: [${evt.x}, ${evt.y}]`;
+  testArea.appendChild(point);
+});
+
+document.getElementsByTagName('button')[0].addEventListener('click', () => {
+  const form = document.querySelector('.controls');
+  const x = parseFloat(form.x.value);
+  const y = parseFloat(form.y.value);
+  const opts = {
+    clientX: x,
+    clientY: y,
+    screenX: x,
+    screenY: y
+  };
+
+  events
+    .exec(cleanPoints)
+    .exec(() => {
+      testArea.appendChild(createPoint(x, y));
+    })
+    .click(testArea, opts)
+    .wait(100)
+    .done(() => {});
+});
+
+
+clickbleArea.addEventListener('click', (evt) => {
+  const border = 5;
+  const x = evt.pageX - clickbleArea.offsetLeft - border;
+  const y = evt.pageY - clickbleArea.offsetTop - border;
+  const opts = {
+    clientX: x,
+    clientY: y,
+    screenX: x,
+    screenY: y
+  };
+
+  events
+    .exec(cleanPoints)
+    .exec(() => {
+      clickbleArea.appendChild(createPoint(x, y));
+    })
+    .click(testArea, opts)
+    .wait(100)
+    .done(() => {});
+});

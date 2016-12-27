@@ -1,13 +1,14 @@
 {
   "name": "dom-events-mocking",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "DOM events mocking",
-  "main": "src/dom-events.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "karma start --single-run",
     "test:dev": "karma start",
-    "build": "set NODE_ENV=production && webpack --progress --config webpack.config.js",
-    "build:dev": "webpack-dev-server --inline --content-base demo/ --config webpack.config.js"
+    "build": "NODE_ENV=production webpack --progress",
+    "build:demo": "webpack --progress",
+    "build:dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
